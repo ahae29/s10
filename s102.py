@@ -1,9 +1,18 @@
 import streamlit as st
 import numpy as np
 from tensorflow.keras.models import load_model
+import os
+
+# 모델 파일 경로
+model_path = 'my_model.h5'
+
+# 모델 훈련 및 저장
+if not os.path.exists(model_path):
+    from model import train_model
+    train_model()  # 모델이 없으면 훈련
 
 # 모델 로드
-model = load_model('my_model.h5')
+model = load_model(model_path)
 
 # Streamlit 앱 제목
 st.title("딥러닝 모델 예측기")
